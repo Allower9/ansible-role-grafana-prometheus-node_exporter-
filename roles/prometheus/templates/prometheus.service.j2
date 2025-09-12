@@ -1,0 +1,16 @@
+[Unit]
+Description=Prometheus
+After=network.target
+
+[Service]
+User=prometheus_usr
+ExecStart=/srv/prometheus/prometheus \
+  --config.file=/srv/prometheus/prometheus.yml \
+  --storage.tsdb.path=/srv/prometheus/data \
+  --storage.tsdb.retention.size=10GB \
+  --storage.tsdb.retention.time=15d
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

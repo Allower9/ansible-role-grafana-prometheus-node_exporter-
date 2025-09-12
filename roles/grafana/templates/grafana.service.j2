@@ -1,0 +1,12 @@
+[Unit]
+Description=Grafana
+After=network.target
+
+[Service]
+User=grafana_usr
+ExecStart=/srv/grafana/bin/grafana-server --homepath=/srv/grafana
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,44 @@
+---
+- name: Create grafana user
+  user:
+    name: grafana_usr
+    system: yes
+    shell: /usr/sbin/nologin
+    create_home: no
+
+- name: Create grafana directory
+  file:
+    path: /srv/grafana
+    state: directory
+    owner: grafana_usr
+    group: grafana_usr
+
+- name: Download Grafana
+  get_url:
+    url: "https://dl.grafana.com/oss/release/grafana-11.2.0.linux-amd64.tar.gz"
+    dest: /tmp/grafana.tar.gz
+
+- name: Extract Grafana
+  unarchive:
+    src: /tmp/grafana.tar.gz
+    dest: /srv/grafana
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+    owner: grafana_usr
+    group: grafana_usr
+
+- name: Deploy systemd unit
+  template:
+    src: grafana.service.j2
+    dest: /etc/systemd/system/grafana.service
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Enable and start grafana
+  systemd:
+    name: grafana
+    state: started
+    enabled: yes
+

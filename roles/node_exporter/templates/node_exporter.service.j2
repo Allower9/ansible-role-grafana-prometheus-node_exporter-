@@ -1,0 +1,13 @@
+[Unit]
+Description=Node Exporter
+After=network.target
+
+[Service]
+User=nodeusr
+Group=nodeusr
+ExecStart=/srv/node_exporter/node_exporter
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
