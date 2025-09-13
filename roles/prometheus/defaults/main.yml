@@ -1,0 +1,15 @@
+prometheus_version: "2.54.0"
+prometheus_user: "prometheus_usr"
+prometheus_group: "prometheus_usr"
+prometheus_install_dir: "/srv/prometheus"
+prometheus_data_dir: "{{ prometheus_install_dir }}/data"
+prometheus_config: "{{ prometheus_install_dir }}/prometheus.yml"
+
+# storage limits
+prometheus_retention_size: "10GB"
+prometheus_retention_time: "15d"
+
+# scrape targets
+prometheus_scrape_targets:
+  - "localhost:9100"
+

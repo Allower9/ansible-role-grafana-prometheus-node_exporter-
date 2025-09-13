@@ -3,12 +3,13 @@ Description=Prometheus
 After=network.target
 
 [Service]
-User=prometheus_usr
-ExecStart=/srv/prometheus/prometheus \
-  --config.file=/srv/prometheus/prometheus.yml \
-  --storage.tsdb.path=/srv/prometheus/data \
-  --storage.tsdb.retention.size=10GB \
-  --storage.tsdb.retention.time=15d
+User={{ prometheus_user }}
+Group={{ prometheus_group }}
+ExecStart={{ prometheus_install_dir }}/prometheus \
+  --config.file={{ prometheus_config }} \
+  --storage.tsdb.path={{ prometheus_data_dir }} \
+  --storage.tsdb.retention.size={{ prometheus_retention_size }} \
+  --storage.tsdb.retention.time={{ prometheus_retention_time }}
 Restart=always
 
 [Install]
