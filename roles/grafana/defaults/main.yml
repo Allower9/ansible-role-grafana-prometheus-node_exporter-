@@ -1,0 +1,8 @@
+grafana_version: "11.2.0"
+grafana_user: "grafana_usr"
+grafana_group: "grafana_usr"
+grafana_install_dir: "/srv/grafana"
+grafana_bin: "{{ grafana_install_dir }}/bin/grafana-server"
+grafana_homepath: "{{ grafana_install_dir }}"
+grafana_port: 3000
+

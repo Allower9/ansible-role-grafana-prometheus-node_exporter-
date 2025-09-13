@@ -3,8 +3,9 @@ Description=Grafana
 After=network.target
 
 [Service]
-User=grafana_usr
-ExecStart=/srv/grafana/bin/grafana-server --homepath=/srv/grafana
+User={{ grafana_user }}
+Group={{ grafana_group }}
+ExecStart={{ grafana_bin }} --homepath={{ grafana_homepath }}
 Restart=always
 
 [Install]

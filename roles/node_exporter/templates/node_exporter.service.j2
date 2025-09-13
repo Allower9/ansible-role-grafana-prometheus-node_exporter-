@@ -3,9 +3,9 @@ Description=Node Exporter
 After=network.target
 
 [Service]
-User=nodeusr
-Group=nodeusr
-ExecStart=/srv/node_exporter/node_exporter
+User= {{node_exporter_user}}
+Group= {{node_exporter_group}}
+ExecStart={{node_exporter_bin}}
 Restart=always
 
 [Install]
